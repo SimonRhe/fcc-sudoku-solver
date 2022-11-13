@@ -42,6 +42,7 @@ async function getSolved() {
     errorMsg.innerHTML = `<code>${JSON.stringify(parsed, null, 2)}</code>`;
     return
   }
+  errorMsg.innerHTML = `<code>${JSON.stringify(parsed, null, 2)}</code>`;
   fillpuzzle(parsed.solution)
 }
 

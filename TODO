@@ -1,0 +1,59 @@
+
+To do next:
+  Write the following tests in tests/1_unit-tests.js:
+    ✔ Logic handles a valid puzzle string of 81 characters @started(22-02-07 07:06) @done(22-02-07 07:39) @lasted(33m36s)
+    ✔ Logic handles a puzzle string with invalid characters (not 1-9 or .) @done(22-02-07 07:41)
+    ✔ Logic handles a puzzle string that is not 81 characters in length @done(22-02-07 07:42)
+    ✔ Logic handles a valid row placement @done(22-02-07 07:49)
+    ✔ Logic handles an invalid row placement @done(22-05-10 08:52)
+    ✔ Logic handles a valid column placement @done(22-05-10 08:57)
+    ✔ Logic handles an invalid column placement @done(22-05-10 08:59)
+    ✔ Logic handles a valid region (3x3 grid) placement @done(22-05-10 09:01)
+    ✔ Logic handles an invalid region (3x3 grid) placement @done(22-05-10 09:02)
+
+
+
+
+  All puzzle logic can go into /controllers/sudoku-solver.js
+  ✔ The validate function should take a given puzzle string and check it to see if it has 81 valid characters for the input. @done(22-02-06 09:52)
+  The check functions should be validating against the current state of the board.
+  ✔ The solve function should handle solving any given valid puzzle string, not just the test inputs and solutions. You are expected to write @done(22-11-12 21:07) out the logic to solve this.
+All routing logic can go into /routes/api.js
+See the puzzle-strings.js file in /controllers for some sample puzzles your application should solve
+To run the challenge tests on this page, set NODE_ENV to test without quotes in the .env file
+To run the tests in the console, use the command npm run test. To open the Replit console, press Ctrl+Shift+P (Cmd if on a Mac) and type "open shell"
+
+Write the following tests in tests/1_unit-tests.js:
+
+✔ Valid puzzle strings pass the solver @done(22-05-10 09:04)
+✔ Invalid puzzle strings fail the solver @done(22-05-10 09:04)
+✔ Solver returns the expected solution for an incomplete puzzle @done(22-11-12 21:07)
+
+Write the following tests in tests/2_functional-tests.js
+
+✔ Solve a puzzle with valid puzzle string: POST request to /api/solve @done(22-11-12 21:21)
+☐ Solve a puzzle with missing puzzle string: POST request to /api/solve
+☐ Solve a puzzle with invalid characters: POST request to /api/solve
+☐ Solve a puzzle with incorrect length: POST request to /api/solve
+☐ Solve a puzzle that cannot be solved: POST request to /api/solve
+☐ Check a puzzle placement with all fields: POST request to /api/check
+☐ Check a puzzle placement with single placement conflict: POST request to /api/check
+☐ Check a puzzle placement with multiple placement conflicts: POST request to /api/check
+☐ Check a puzzle placement with all placement conflicts: POST request to /api/check
+☐ Check a puzzle placement with missing required fields: POST request to /api/check
+☐ Check a puzzle placement with invalid characters: POST request to /api/check
+☐ Check a puzzle placement with incorrect length: POST request to /api/check
+☐ Check a puzzle placement with invalid placement coordinate: POST request to /api/check
+☐ Check a puzzle placement with invalid placement value: POST request to /api/check
+
+
+
+API CHECK:
+✔ You can POST to /api/check an object containing puzzle, coordinate, and value where the coordinate is the letter A-I indicating the row, followed by a number 1-9 indicating the column, and value is a number from 1-9. @done(22-05-10 09:17)
+✔ The return value from the POST to /api/check will be an object containing a valid property, which is true if the number may be placed at the provided coordinate and false if the number may not. If false, the returned object will also contain a conflict property which is an array containing the strings "row", "column", and/or "region" depending on which makes the placement invalid. @done(22-05-10 09:57)
+✔ If value submitted to /api/check is already placed in puzzle on that coordinate, the returned value will be an object containing a valid property with true if value is not conflicting. @done(22-05-10 09:44)
+✔ If the puzzle submitted to /api/check contains values which are not numbers or periods, the returned value will be { error: 'Invalid characters in puzzle' } @done(22-08-23 09:39)
+✔ If the puzzle submitted to /api/check is greater or less than 81 characters, the returned value will be { error: 'Expected puzzle to be 81 characters long' } @done(22-08-23 09:39)
+✔ If the object submitted to /api/check is missing puzzle, coordinate or value, the returned value will be { error: Required field(s) missing } @done(22-08-23 09:53)
+✔ If the coordinate submitted to api/check does not point to an existing grid cell, the returned value will be { error: 'Invalid coordinate'} @done(22-08-25 09:59)
+✔ If the value submitted to /api/check is not a number between 1 and 9, the returned values will be { error: 'Invalid value' } @done(22-08-25 10:08)
